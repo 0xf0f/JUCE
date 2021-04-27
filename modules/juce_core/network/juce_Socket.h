@@ -159,11 +159,12 @@ public:
         @param portNumber       the port number to listen on
         @param localHostName    the interface address to listen on - pass an empty
                                 string to listen on all addresses
+        @param backlog          number of spaces allowed in the backlog queue
 
         @returns  true if it manages to open the socket successfully
         @see waitForNextConnection
     */
-    bool createListener (int portNumber, const String& localHostName = String());
+    bool createListener (int portNumber, const String& localHostName = String(), unsigned backlog = 0);
 
     /** When in "listener" mode, this waits for a connection and spawns it as a new
         socket.

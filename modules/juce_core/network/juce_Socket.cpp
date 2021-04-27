@@ -562,7 +562,7 @@ void StreamingSocket::close()
 }
 
 //==============================================================================
-bool StreamingSocket::createListener (int newPortNumber, const String& localHostName)
+bool StreamingSocket::createListener (int newPortNumber, const String& localHostName, unsigned backlog)
 {
     jassert (SocketHelpers::isValidPortNumber (newPortNumber));
 
@@ -583,7 +583,7 @@ bool StreamingSocket::createListener (int newPortNumber, const String& localHost
    #endif
 
     if (SocketHelpers::bindSocket ((SocketHandle) handle.load(), portNumber, localHostName)
-         && listen ((SocketHandle) handle.load(), SOMAXCONN) >= 0)
+         && listen ((SocketHandle) handle.load(), backlog) >= 0)
     {
         connected = true;
         return true;
